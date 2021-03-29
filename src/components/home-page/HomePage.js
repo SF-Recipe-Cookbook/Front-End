@@ -3,9 +3,18 @@ import styled from 'styled-components'
 import {BrowserRouter as Router, Link, Switch} from 'react-router-dom'
 
 const Page = styled.div ``
-const Header = styled.div ``
-const Heading = styled.h1 ``
-const Button = styled.button ``
+const Header = styled.div `
+width: 80%;
+height: 10vh;
+background-color: #7a4343;
+display: flex;
+`
+const Heading = styled.h1 `
+color: white;
+`
+const Button = styled.button `
+background-color: #857676;
+`
 const RecipeCards = styled.div ``
 const Text = styled.p ``
 
