@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {BrowserRouter as Router, Link, Switch} from 'react-router-dom'
 
 const Page = styled.div ``
 const Header = styled.div ``
@@ -13,8 +14,8 @@ const HomePage = () => {
         <Page>
             <Header>
                 <Heading>Super Top Secret Family Cookbook</Heading>
-                <Button> Sign up before your granny starts haunting you</Button>
-                <Button>Log in and get to cookin</Button>
+                <Button Link to="/SignUp"> Sign up before your granny starts haunting you</Button>
+                <Button Link to="/LogIn">Log in and get to cookin</Button>
             </Header>
             <Text>Here lies all the food your great great great grandma whipped up in the 1800's </Text>
             <RecipeCards></RecipeCards>
