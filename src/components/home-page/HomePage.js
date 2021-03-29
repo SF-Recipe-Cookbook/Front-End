@@ -31,3 +31,5 @@ const HomePage = () => {
         </Page>
     )
 }
+
+export default HomePage
