@@ -24,7 +24,7 @@ const Profile = (props) => {
 
     const handleClick = () => {
         localStorage.removeItem('token')
-        window.location.href='#';
+        window.location.href='#';//add url once we've set up fro deployement
       }
 
      
@@ -41,6 +41,7 @@ const Profile = (props) => {
                     <p>{user.email}</p>
                 </div>
                 <div className='user-picture'>
+                    {/*placeholder image */}
                     <img src="https://img.huffingtonpost.com/asset/5967ac4d2100003700fc6bc9.jpeg" alt="Person Cooking" />
                 </div>
             </section>

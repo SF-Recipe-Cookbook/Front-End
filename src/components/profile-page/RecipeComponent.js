@@ -7,6 +7,7 @@ const Recipe = ({recipe, search}) => {
         <div className='recipe-component'>
             <div className='recipe-title'>
                 <h3>{recipe.title}</h3>
+                {/*placeholder image */}
                 <img src='https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg' alt='delicious food'/>
             </div>
             <div className='recipe-description'>
