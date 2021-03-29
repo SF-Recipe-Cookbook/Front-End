@@ -1,6 +1,7 @@
 import * as yup from 'yup'
 import styled from 'styled-components'
-import { axiosWithAuth } from '../../axiosWithAuth'
+import axiosWithAuth from '../../utils/axiosWithAuth'
+import React, {useState, useEffect} from 'react'
 
 const formSchema = yup.object().shape({
     username: yup.string().required("Username is required"),
