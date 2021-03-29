@@ -22,10 +22,20 @@ const Profile = (props) => {
         })
     }
 
+    const handleClick = () => {
+        localStorage.removeItem('token')
+        window.location.href='#';
+      }
+
+     
+
     return (
         <div className='profile-component'>
-            <h1>Welcome back, {user.username}</h1>
-            <div className='user-card'>
+            <header>
+                <h1>Welcome back, {user.username}</h1>
+                <button onClick={handleClick}>logout</button>
+            </header>
+            <section className='user-card'>
                 <div className='user-info'>
                     <h2>{user.username}</h2>
                     <p>{user.email}</p>
@@ -33,7 +43,7 @@ const Profile = (props) => {
                 <div className='user-picture'>
                     <img src="https://img.huffingtonpost.com/asset/5967ac4d2100003700fc6bc9.jpeg" alt="Person Cooking" />
                 </div>
-            </div>
+            </section>
             <div className='recipe-search'>
                 <input
                     type='text'
@@ -43,11 +53,22 @@ const Profile = (props) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className='recipe-cards'>
+            <section className='recipe-cards'>
                 {user.recipes.map(recipe => {
                     return <Recipe recipe={recipe} search={search} />
                 })}
-            </div>
+            </section>
+            <footer>
+                <button
+                 onClick={
+                    window.scroll({
+                    top: 0, 
+                    left: 0, 
+                    behavior: 'smooth' 
+                    })}>
+                Return to Top of Page
+                </button>
+            </footer>
         </div>
     )
 }
