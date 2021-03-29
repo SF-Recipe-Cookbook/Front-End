@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Recipe = ({recipe}) => {
+const Recipe = ({recipe, search}) => {
+    if (search === ''|| search === recipe.title) {
 
     return (
         <div className='recipe-component'>
             <div className='recipe-title'>
                 <h3>{recipe.title}</h3>
-                <img src='#' alt='delicious food'/>
+                <img src='https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg' alt='delicious food'/>
             </div>
             <div className='recipe-description'>
                 <p>{recipe.category}</p>
@@ -21,6 +22,7 @@ const Recipe = ({recipe}) => {
             </div>
         </div>
     )
+    }
 }
 
 export default Recipe;

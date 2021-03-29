@@ -13,6 +13,14 @@ const Profile = (props) => {
     }
 
     const [user, setUser] = useState(initialState)
+    const [search, setSearch] = useState('')
+
+    const handleChange = e => {
+        setSearch({
+            ...search,
+            [e.target.name]: e.target.value
+        })
+    }
 
     return (
         <div className='profile-component'>
@@ -23,12 +31,21 @@ const Profile = (props) => {
                     <p>{user.email}</p>
                 </div>
                 <div className='user-picture'>
-                    <img src="https://img.huffingtonpost.com/asset/5967ac4d2100003700fc6bc9.jpeg?ops=1778_1000" alt="Person Cooking" />
+                    <img src="https://img.huffingtonpost.com/asset/5967ac4d2100003700fc6bc9.jpeg" alt="Person Cooking" />
                 </div>
             </div>
+            <div className='recipe-search'>
+                <input
+                    type='text'
+                    name='recipe'
+                    placeholder='search for recipe name here'
+                    value={search}
+                    onChange={handleChange}
+                />
+            </div>
             <div className='recipe-cards'>
-                {user.recipies.map(recipe => {
-                    return <Recipe recipe={recipe} />
+                {user.recipes.map(recipe => {
+                    return <Recipe recipe={recipe} search={search} />
                 })}
             </div>
         </div>
