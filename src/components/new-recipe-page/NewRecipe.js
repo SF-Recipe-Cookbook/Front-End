@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 
-// Enter New Recipe Component - form must include recipe title, category, description, instructions, ingredients, and time required to make
-
 const Page = styled.div`
     font-size: 1.5rem;
     color: #813D18;
-    width: 40%;
+    width: 60%;
     margin: auto;
 `
 const RecipeName = styled.h1`
@@ -53,31 +51,38 @@ const Category = styled.select`
 const Description = styled.textarea`
     margin: .5rem;
     width: 80%;
+    box-shadow: 3px 3px #4D6E7F;
 `
 const BottomCont = styled.div`
     display: flex;
     width: 100%;
-    height: 30vh;
+    height: 40vh;
     justify-content: center;
 `
 const Ingredients = styled.textarea`
     margin: .5rem;
-    width: 30%;
+    width: 20%;
+    box-shadow: 3px 3px #4D6E7F;
 `
 const RightCont = styled.div`
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 60%;
 `
 const Instructions = styled.textarea`
-    width: 95%;
+    width: 97%;
     margin: .5rem;
-    height: 25vh;
+    height: 35vh;
+    box-shadow: 3px 3px #4D6E7F;
 `
 const TimerCont = styled.div`
     display: flex;
     font-size: 1.2rem;
-    justify-content: space-between;
+    justify-content: space-around;
+`
+const EachTimer = styled.div`
+    display: flex;
+    justify-content: flex-start;
 `
 const Timer = styled.input`
     margin: 0 .5rem;
@@ -96,15 +101,15 @@ const AddRecipe = styled.button`
     background-color: inherit;
     border: none;
     text-decoration: underline;
-    font-size: 1.2rem;
+    font-size: 1.75rem;
 `
 
 const recipe = {
     name: "",
     category: "",
     description: "",
-    ingredients: "",
-    instructions: "",
+    ingredients: [],
+    instructions: [],
     preptime: "",
     cooktime: ""
 }
@@ -116,7 +121,7 @@ const NewRecipe = () => {
     const handleChange = e => {
         setNewRecipe({
             ...newRecipe,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value.split(",")
         })
         console.log(newRecipe)
     }
@@ -191,7 +196,7 @@ const NewRecipe = () => {
                     <Ingredients
                         name="ingredients"
                         type="text"
-                        placeholder="ingredients"
+                        placeholder="ingredients (add multiple ingredients with a comma)"
                         onChange={handleChange}
                     />
 
@@ -200,37 +205,45 @@ const NewRecipe = () => {
                         <Instructions
                             name="instructions"
                             type="text"
-                            placeholder="Instructions"
+                            placeholder="Instructions (separate instructions with a comma)"
                             cols="40"
                             rows="5"
                             onChange={handleChange}
                         />
 
                         <TimerCont>
-                            <Text>Prep Time (minutes)</Text>
-                            <Timer
-                                name="preptime"
-                                type="number"
-                                placeholder="0"
-                                onChange={handleChange}
-                            />
-                        </TimerCont>
 
-                        <TimerCont>
-                            <Text>Cook Time (minutes)</Text>
-                            <Timer
-                                name="cooktime"
-                                type="number"
-                                placeholder="0"
-                                onChange={handleChange}
-                            />
-                        </TimerCont>
+                            <EachTimer>
 
-                        <AddRecipe>Add recipe</AddRecipe>
+                                <Text>Prep Time (minutes)</Text>
+                                <Timer
+                                    name="preptime"
+                                    type="number"
+                                    placeholder="0"
+                                    onChange={handleChange}
+                                />
+
+                            </EachTimer>
+                        
+                            <EachTimer>
+                                
+                                <Text>Cook Time (minutes)</Text>
+                                <Timer
+                                    name="cooktime"
+                                    type="number"
+                                    placeholder="0"
+                                    onChange={handleChange}
+                                />
+
+                            </EachTimer>
+
+                        </TimerCont>
 
                     </RightCont>
-                
+
                 </BottomCont>
+                
+                <AddRecipe>Add recipe</AddRecipe>
 
             </NewRecipeCard>
         </Page>
