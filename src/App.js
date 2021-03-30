@@ -1,4 +1,4 @@
-import {Switch, Route} from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import HomePage from './components/home-page/HomePage'
 import LoginPage from './components/log-in-page/LoginPage'
@@ -10,25 +10,25 @@ function App() {
   return (
     <div>
       <Switch>
-        
+
         <Route exact path='/'>
-          <HomePage/>
+          <HomePage />
         </Route>
 
         <Route path='/login'>
-          <LoginPage/>
+          <LoginPage />
         </Route>
 
         <Route path='/signup'>
-          <SignupPage/>
+          <SignupPage />
         </Route>
 
         <Route path='/profilepage'>
-          <ProfilePage/>
+          <ProfilePage />
         </Route>
 
         <Route path='/new-recipe'>
-          <NewRecipe/>
+          <NewRecipe />
         </Route>
 
       </Switch>
