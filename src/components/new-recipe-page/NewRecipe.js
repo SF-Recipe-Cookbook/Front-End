@@ -97,11 +97,13 @@ const Timer = styled.input`
     }
 `
 const AddRecipe = styled.button`
-    margin: .5rem;
+    margin: 2rem .5rem 0;
     background-color: inherit;
     border: none;
     text-decoration: underline;
     font-size: 1.75rem;
+    color: #333D45;
+    font-weight: bold;
 `
 
 const recipe = {
