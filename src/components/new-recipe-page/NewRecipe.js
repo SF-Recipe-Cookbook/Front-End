@@ -4,18 +4,52 @@ import styled from 'styled-components'
 // Enter New Recipe Component - form must include recipe title, category, description, instructions, ingredients, and time required to make
 
 const Page = styled.div``
-const NewRecipeCard = styled.form``
-const Text = styled.p``
-const Title = styled.input``
-const Category = styled.select``
-const Description = styled.input``
-const Ingredients = styled.input``
+const RecipeName = styled.h1`
+    font-size: 3rem;
+    text-align: center;
+    margin: 1rem;
+`
+const NewRecipeCard = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
+const Text = styled.p`
+    margin: .5rem;
+`
+const Title = styled.input`
+    margin: .5rem;
+    width: 30rem;
+`
+const Category = styled.select`
+    margin: .5rem;
+    width: 30rem;
+`
+const Description = styled.input`
+    margin: .5rem;
+    width: 30rem;
+`
+const Ingredients = styled.input`
+    margin: .5rem;
+    width: 30rem;
+`
 const Instructions = styled.textarea`
     width: 20%;
+    margin: .5rem;
+    width: 30rem;
 `
-const TimePrep = styled.input``
-const TimeCook = styled.input``
-const AddRecipe = styled.button``
+const TimePrep = styled.input`
+    margin: .5rem;
+    width: 30rem;
+`
+const TimeCook = styled.input`
+    margin: .5rem;
+    width: 30rem;
+`
+const AddRecipe = styled.button`
+    margin: .5rem;
+`
 
 const recipe = {
     name: "",
@@ -45,6 +79,7 @@ const NewRecipe = () => {
 
     return (
         <Page>
+            <RecipeName>New Recipe</RecipeName>
             <NewRecipeCard 
                 onSubmit={handleSubmit}
             >
