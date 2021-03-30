@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from 'react-router-dom'
+
+import HomePage from './components/home-page/HomePage'
+import LoginPage from './components/log-in-page/LoginPage'
+import SignupPage from './components/sign-up-page/SignupPage'
+import ProfilePage from './components/profile-page/ProfilePage'
+import NewRecipe from './components/new-recipe-page/NewRecipe'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org" 
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Switch>
+
+        <Route exact path='/'>
+          <HomePage />
+        </Route>
+
+        <Route path='/login'>
+          <LoginPage />
+        </Route>
+
+        <Route path='/signup'>
+          <SignupPage />
+        </Route>
+
+        <Route path='/profilepage'>
+          <ProfilePage />
+        </Route>
+
+        <Route path='/new-recipe'>
+          <NewRecipe />
+        </Route>
+
+      </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

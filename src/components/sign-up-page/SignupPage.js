@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 import styled from 'styled-components'
 import { axiosWithAuth } from '../../axiosWithAuth'
+=======
+import * as yup from 'yup'
+import styled from 'styled-components'
+import axiosWithAuth from '../../utils/axiosWithAuth'
+import React, {useState, useEffect} from 'react'
+>>>>>>> 32faaa004ea64f26caec30b30739cb10c7349fe7
 
 const formSchema = yup.object().shape({
     username: yup.string().required("Username is required"),
@@ -103,7 +110,10 @@ const StyledDiv = styled.div`
 .error {
     color: red;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32faaa004ea64f26caec30b30739cb10c7349fe7
 button {
     border: 2px solid white;
     border-radius: 50px;
@@ -111,7 +121,10 @@ button {
     margin-top: 25px;
     padding: 1%;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32faaa004ea64f26caec30b30739cb10c7349fe7
 button:hover {
   color: white;
   background-image: none;
@@ -119,7 +132,10 @@ button:hover {
   border: 2px solid white;
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32faaa004ea64f26caec30b30739cb10c7349fe7
 button:disabled {
   color: #666;
   background-image: none;
@@ -127,7 +143,10 @@ button:disabled {
   border: 2px solid rgba(0, 0, 0, 0.1);
   text-shadow: none;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32faaa004ea64f26caec30b30739cb10c7349fe7
 `
 const StyledInput = styled.input`
 border: 2px solid white;
