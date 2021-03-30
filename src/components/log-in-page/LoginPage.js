@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
-// import cookbookImage from '../../images/cookbookImage'
+
+
+
 
 const initialForm = {
     username: "",
@@ -52,7 +54,7 @@ const LoginPage = porps => {
     return (
         <StyledLoginWhole>
             <StyledLogin>
-                <div>
+                <div className="sign-in-box">
                     <h1>Sign In</h1>
                     <form>
                         <input
@@ -84,13 +86,65 @@ const LoginPage = porps => {
 export default LoginPage;
 
 const StyledLoginWhole = styled.div`
-  
+  background-image: url{};
 `
 
 const StyledLogin = styled.div`
     object-fit:cover;
     height: 100vh;
     display: flex;
-    align-items: center;
     font-size: 1.1rem;
+    align-items: center;
+
+    
+
+    h1{
+    color: black;
+    display:flex;
+    justify-content: center;
+    margin-bottom: 15%;
+    font-size: 1.4rem;
+}
+
+
+.sign-in-box{
+    -webkit-box-shadow: 22px -14px 15px 5px rgba(0,0,0,0.89); 
+box-shadow: 22px -14px 15px 5px rgba(0,0,0,0.89);
+
+     width: 40%;
+     border: 2px solid black;
+     background-color:white;
+     margin: auto;
+     border-radius: 5px;
+     padding: 100px 50px;
+}
+
+input{
+    margin-top: 9px;
+    width: 85%;
+    padding: 13px 22px;
+    margin: 10px 5px;
+    /* box-sizing: border-box;   */
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+
+form button{
+    width: 40%;
+    background-color: black;
+    color:white;
+
+    font-size: 1.1rem;
+    border-radius: 4px;
+    margin-top: 5px;
+    padding: 10px;
+    margin: 5px 5px;
+    cursor: pointer;
+}
 `
