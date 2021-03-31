@@ -45,7 +45,7 @@ const LoginPage = () => {
             .post("https://ttwebft72recipecookbook.herokuapp.com/api/auth/", form)
             .then((res) => {
                 console.log(res)
-                localStorage.setItem("token", JSON.stringify(res.data.payload));
+                localStorage.setItem("token", JSON.stringify(res.data.token));
                 history.push('/profilepage');
                 // window.location.href = '/profile';
             })
