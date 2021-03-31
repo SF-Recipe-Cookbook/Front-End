@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import {useHistory} from 'react-router-dom'
+import {useHistory, useParams} from 'react-router-dom'
 import axiosWithAuth from '../../utils/axiosWithAuth'
 
 const Page = styled.div`
@@ -114,6 +114,11 @@ const AddRecipe = styled.button`
     font-weight: bold;
 `
 
+const UpdateDelete = styled.div`
+    display: flex;
+    justify-content: space-around;
+`
+
 const recipe = {
     name: "",
     category: "",
@@ -125,35 +130,39 @@ const recipe = {
     image_url: ""
 }
 
-const recipeErrors = {
-    name: "",
-    category: "",
-    description: "",
-    ingredients: [],
-    instructions: [],
-    prep_time: "",
-    cook_time: "",
-    image_url: ""
-}
-
-const NewRecipe = () => {
+const NewRecipe = props => {
 
     const [newRecipe, setNewRecipe] = useState(recipe)
-    const [errors, setErrors] = useState(recipeErrors)
+
+    // const {recipe} = props
 
     const {push} = useHistory()
 
+    const id = useParams()
+
     const handleChange = e => {
         setNewRecipe({
-            ...newRecipe,
+            ...recipe,
             [e.target.name]: e.target.value.split(",")
         })
         console.log(newRecipe)
     }
 
-    const handleSubmit = e => {
+    const updateRecipe = e => {
         e.preventDefault()
-        axiosWithAuth().post('/recipes', newRecipe)
+        axiosWithAuth().put(`/recipes/${id}`, recipe)
+        .then(res => {
+            console.log(res.data)
+            push('/profilepage')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    const deleteRecipe = e => {
+        e.preventDefault()
+        axiosWithAuth().delete(`/recipes/${id}`)
         .then(res => {
             console.log(res.data)
             push('/profilepage')
@@ -165,10 +174,8 @@ const NewRecipe = () => {
 
     return (
         <Page>
-            <RecipeName>New Recipe</RecipeName>
-            <NewRecipeCard 
-                onSubmit={handleSubmit}
-            >
+            <RecipeName>Edit Recipe</RecipeName>
+            <NewRecipeCard>
                 <FirstRow>
                  
                     <Title
@@ -284,8 +291,14 @@ const NewRecipe = () => {
                     </RightCont>
 
                 </BottomCont>
+
+                <UpdateDelete>
                 
-                <AddRecipe>Add recipe</AddRecipe>
+                    <AddRecipe onClick={updateRecipe}>Update Recipe</AddRecipe>
+                    
+                    <AddRecipe onClick={deleteRecipe}>Delete Recipe</AddRecipe>
+
+                </UpdateDelete>
 
             </NewRecipeCard>
         </Page>

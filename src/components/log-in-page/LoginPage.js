@@ -17,7 +17,7 @@ const initialError = {
 }
 
 
-const LoginPage = porps => {
+const LoginPage = () => {
     const [form, setForm] = useState(initialForm);
     const [error, setError] = useState(initialError);
 
@@ -36,18 +36,21 @@ const LoginPage = porps => {
             ...form,
             [e.target.name]: e.target.value
         })
+        console.log(form)
     }
 
     const login = (e) => {
         e.preventDefault();
         axios
-            .post("https://ttwebft72recipecookbook.herokuapp.com/api/users/", form)
+            .post("https://ttwebft72recipecookbook.herokuapp.com/api/auth/", form)
             .then((res) => {
-                localStorage.setItem("token", JSON.stringify(res.data.payload));
-                history.push('/profile');
+                console.log(res)
+                localStorage.setItem("token", JSON.stringify(res.data.token));
+                history.push('/profilepage');
                 // window.location.href = '/profile';
             })
             .catch((err) => {
+                console.log(err.response)
                 setError({ error: " Username or Password is not valid." });
             })
     }
@@ -57,7 +60,7 @@ const LoginPage = porps => {
         <StyledLoginWhole>
             <StyledLogin>
                 <div className="sign-in-box">
-                    <button onClick={goToHomePage} className="left-arrow-button"><i class="arrow left"></i><span> Back to Homepage</span></button>
+                    <button onClick={goToHomePage} className="left-arrow-button"><i className="arrow left"></i><span> Back to Homepage</span></button>
                     <h1>Sign In</h1>
                     <form onSubmit={login}>
                         <input
