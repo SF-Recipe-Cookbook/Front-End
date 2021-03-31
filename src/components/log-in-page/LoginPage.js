@@ -21,7 +21,7 @@ const LoginPage = porps => {
     const [form, setForm] = useState(initialForm);
     const [error, setError] = useState(initialError);
 
-    const history = useHistory;
+    const history = useHistory();
 
     const goToHomePage = () => {
         history.push('/')
@@ -40,10 +40,12 @@ const LoginPage = porps => {
 
     const login = (e) => {
         e.preventDefault();
-        axios.post()
+        axios
+            .post("https://ttwebft72recipecookbook.herokuapp.com/api/users/", form)
             .then((res) => {
-                localStorage.setItem("token", res.data.access_token)
-                window.location.href = '/profile';
+                localStorage.setItem("token", JSON.stringify(res.data.payload));
+                history.push('/profile');
+                // window.location.href = '/profile';
             })
             .catch((err) => {
                 setError({ error: " Username or Password is not valid." });
@@ -55,28 +57,31 @@ const LoginPage = porps => {
         <StyledLoginWhole>
             <StyledLogin>
                 <div className="sign-in-box">
+                    <button onClick={goToHomePage} className="left-arrow-button"><i class="arrow left"></i><span> Back to Homepage</span></button>
                     <h1>Sign In</h1>
-                    <form>
+                    <form onSubmit={login}>
                         <input
                             name='username'
                             type='text'
                             placeholder='Username'
-                        //   value={form.username}
-                        //   onChange={handleChange}  
+                            value={form.username}
+                            onChange={handleChange}
                         />
                         <input
                             name='password'
                             type='password'
                             placeholder='Password'
-                        // value={form.password}
-                        // onChange={handleChange}
+                            value={form.password}
+                            onChange={handleChange}
                         />
-                        {/* <p style={{ color: `red`, fontSize: "14px" }}>{error.error}</p> */}
+                        <p style={{ color: `red`, fontSize: "14px" }}>{error.error}</p>
                         <button>
                             Sign In
                         </button>
                     </form>
-                    <h5 onClick={goSignUp} className="-sign-up">Not a member yet?</h5>
+                    <div className="questions">
+                        <h5 onClick={goSignUp} className="sign-up">Not a member yet?</h5>
+                    </div>
                 </div>
             </StyledLogin>
         </StyledLoginWhole>
@@ -86,8 +91,11 @@ const LoginPage = porps => {
 export default LoginPage;
 
 const StyledLoginWhole = styled.div`
-  background-image: url{};
+  /* background-color: white; */
 `
+
+
+
 
 const StyledLogin = styled.div`
     object-fit:cover;
@@ -95,21 +103,36 @@ const StyledLogin = styled.div`
     display: flex;
     font-size: 1.1rem;
     align-items: center;
+     /* background-color: white; */
 
-    
+
+     
+     .arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    background-color: white;
+        }
+    .left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    background-color: white;
+    }   
 
     h1{
     color: black;
     display:flex;
     justify-content: center;
     margin-bottom: 15%;
-    font-size: 1.4rem;
-}
+    font-size: 1.3rem;
+    background-color: white;
+    }
 
 
-.sign-in-box{
+    .sign-in-box{
     -webkit-box-shadow: 22px -14px 15px 5px rgba(0,0,0,0.89); 
-box-shadow: 22px -14px 15px 5px rgba(0,0,0,0.89);
+    box-shadow: 22px -14px 15px 5px rgba(0,0,0,0.89);
 
      width: 40%;
      border: 2px solid black;
@@ -117,27 +140,31 @@ box-shadow: 22px -14px 15px 5px rgba(0,0,0,0.89);
      margin: auto;
      border-radius: 5px;
      padding: 100px 50px;
-}
+     
+    }
 
-input{
+    input{
     margin-top: 9px;
     width: 85%;
     padding: 13px 22px;
     margin: 10px 5px;
-    /* box-sizing: border-box;   */
-}
+    box-sizing: border-box; 
+    background-color: white; 
+    }
 
-form{
+    form{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
     
-}
+    }
 
 
-form button{
+    form button{
     width: 40%;
     background-color: black;
+
     color:white;
 
     font-size: 1.1rem;
@@ -146,5 +173,13 @@ form button{
     padding: 10px;
     margin: 5px 5px;
     cursor: pointer;
-}
+
+    .questions h5{
+    background-color: white;
+    display:flex;
+     justify-content: space-around;
+     margin-top: 9px;
+     cursor: pointer;
+    }
+    } 
 `
