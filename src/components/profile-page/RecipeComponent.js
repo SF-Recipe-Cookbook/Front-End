@@ -1,29 +1,76 @@
 import React from 'react';
+import styled from 'styled-components';
+
+
+// React Component below this line
 
 const Recipe = ({recipe, search}) => {
     if (search === ''|| search === recipe.title) {
 
     return (
-        <div className='recipe-component'>
-            <div className='recipe-title'>
-                <h3>{recipe.title}</h3>
+        <RecipeComponent>
+            <RecipeHeader>
+                <RecipeTitle>{recipe.title}</RecipeTitle>
                 {/*placeholder image */}
-                <img src='https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg' alt='delicious food'/>
-            </div>
-            <div className='recipe-description'>
-                <p>{recipe.category}</p>
-                <p>{recipe.timeToMake}</p>
-                <p>{recipe.description}</p>
-            </div>
-            <div className='recipe-ingredients'>
-                <p>{recipe.ingredients}</p>
-            </div>
-            <div className='recipe-instructions'>
-                <p>{recipe.instructions}</p>
-            </div>
-        </div>
+                <RecipePic src='https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg' alt='delicious food'/>
+            </RecipeHeader>
+            <RecipeDescription>
+                <p>{`Style: ${recipe.category}`}</p>
+                <p>{`Time Required to Make: ${recipe.timeToMake}`}</p>
+                <p>{`Description: ${recipe.description}`}</p>
+            </RecipeDescription>
+            <RecipeIngredients>
+                <p>{`Ingredients: ${recipe.ingredients}`}</p>
+            </RecipeIngredients>
+            <RecipeInstructions>
+                <p>{`Instructions: ${recipe.instructions}`}</p>
+            </RecipeInstructions>
+        </RecipeComponent>
     )
     }
 }
 
 export default Recipe;
+
+//styling below this line
+
+const RecipeComponent = styled.div`
+    width: 20%;
+    border: 2px solid #813D18;
+    box-shadow: 3px 3px #4D6E7F;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+`
+
+    const RecipeHeader = styled.div`
+        height: 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        `
+
+        const RecipeTitle = styled.h3`
+        `
+
+        const RecipePic = styled.img`
+            width: 25%;
+        `
+
+    const RecipeDescription = styled.div`
+        height: 20%;
+        margin-bottom: 20px;
+    `
+
+    const RecipeIngredients = styled.div`
+        height: 20%;
+        margin-bottom: 20px;
+    `
+
+    const RecipeInstructions = styled.div`
+        height: 20%;
+        margin-bottom: 20px;
+    `
