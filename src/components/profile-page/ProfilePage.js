@@ -1,29 +1,56 @@
 // should list all recipes from user as cards.  Should include Search for recipe by title or tagged categories
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Recipe from './RecipeComponent';
 import styled from 'styled-components';
 import 'fontsource-roboto';
+import axiosWithAuth from '../../utils/axiosWithAuth';
+import {useHistory} from 'react-router-dom';
 
 // React Component below this line
 
 const Profile = (props) => {
     const initialState = {
-        username: 'Spicy Lunchbox',
-        password: 'Lambda',
-        email: 'westonwoodard28@gmail.com',
+        username: '',
+        password: '',
+    }
+
+    const initialRecipes = {
         recipes: [{
-            title: `tacos`,
-            category: 'Mexican',
-            timeToMake: '30 minutes',
-            description: 'A taco is a traditional Mexican dish consisting of a small hand-sized corn or wheat tortilla topped with a filling. The tortilla is then folded around the filling and eaten by hand.',
-            ingredients: 'tortilla, cheese, tomatoes, ground beef, lettuce',
-            instructions: 'these are the instructions on how to make a taco',
+            title: ``,
+            category: '',
+            timeToMake: '',
+            description: '',
+            ingredients: '',
+            instructions: '',
         }],
     }
 
     const [user, setUser] = useState(initialState)
+    const [recipes, setRecipes] = useState(initialRecipes)
     const [search, setSearch] = useState('')
+
+    const {push} = useHistory()
+
+    useEffect(() => {
+        axiosWithAuth().get('/auth/')
+            .then(res => {
+                setUser(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        axiosWithAuth().get('/recipes/user')
+            .then(res => {
+                setRecipes(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },[])
+       
+
+
 
     const handleChange = e => {
         setSearch({
@@ -34,8 +61,12 @@ const Profile = (props) => {
 
     const handleClick = () => {
         localStorage.removeItem('token')
-        window.location.href='#';//add url once we've set up for deployement
+        push('/')
       }
+
+    const handleAdd = () => {
+        push('/new-recipe')
+    }
 
     return (
         <Page>
@@ -57,9 +88,10 @@ const Profile = (props) => {
                     onChange={handleChange}
                 />
             </RecipeSearch>
+            <AddRecipeButton onClick={handleAdd}>Add a Recipe</AddRecipeButton>
             <RecipeCards>
-                {user.recipes.map(recipe => {
-                    return <Recipe recipe={recipe} search={search} />
+                {recipes.recipes.map(recipe => {
+                    return <Recipe recipe={recipe} search={search} setRecipes={setRecipes} push={push}/>
                 })}
             </RecipeCards>
             <Footer>
@@ -135,6 +167,7 @@ const Page = styled.div`
          margin-bottom: 5px;
 
     `
+    const AddRecipeButton = styled.button``
 
     const RecipeCards = styled.section`
          height: 50vh;
