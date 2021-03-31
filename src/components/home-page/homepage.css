@@ -1,0 +1,40 @@
+/* 
+
+header {
+border: 1px dashed black;
+width: 80%;
+height: 10vh;
+background-color: #813D18;
+display: flex;
+justify-content: left;
+margin: 0 auto;
+justify-content: flex-end;
+border-radius: 10%;
+}
+
+h1 {
+border: 1px dashed white;
+background-color: #813D18;
+color: #D5C9BB;
+display: flex;
+justify-content: flex-start;
+}
+
+button {
+display: flex;
+border: 2px dashed black;
+background-color: #D5C9BB;
+color: #333D45;
+text-align: center;
+margin: 1%;
+border: none;
+border-radius: 0px 34px 0px 34px;
+
+width: 10%;
+padding: 
+}
+
+
+h3 {
+text-align: center;
+} */
