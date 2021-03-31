@@ -1,7 +1,8 @@
+import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 import styled from 'styled-components'
 import axiosWithAuth from '../../utils/axiosWithAuth'
-import React, {useState, useEffect} from 'react'
+import img from './wood-bg.jpg'
 
 const formSchema = yup.object().shape({
     username: yup.string().required("Username is required"),
@@ -70,53 +71,105 @@ const CreateUser = props => {
         setFormState({ ...formState, [t.name]: t.value })
     }
 
-    // {errorState.username ? <span className="error">{errorState.username}</span> : null}
-    // name='' type='' value={formState.} onChange={inputChange}
     return (
-        <StyledDiv className='form-container'>
-            <h1 className='signup-title'>Register a new user</h1>
-            <form onSubmit={formSubmit}>
-                <label htmlFor='username'>
-                    <h2>Username</h2>
-                    <StyledInput name='username' type='text' value={formState.username} onChange={inputChange} />
-                </label>
-                {errorState.username ? <span className='error'>{errorState.username}</span> : null}
-                <label htmlFor='password'>
-                    <h2>Password</h2>
-                    <StyledInput name='password' type='password' value={formState.password} onChange={inputChange} />
-                </label>
-                {errorState.password ? <span className="error">{errorState.password}</span> : null}
-                <label htmlFor='email'>
-                    <h2>Email</h2>
-                    <StyledInput name='email' type='email' value={formState.email} onChange={inputChange} />
-                </label>
-                {errorState.email ? <span className="error">{errorState.email}</span> : null}
-                <button disabled={buttonDisabled}>Submit</button>
-            </form>
+        <StyledDiv className='signup-container'>
+            <span className='form-container'>
+                <h1 className='signup-title'>Register a new user</h1>
+                <form onSubmit={formSubmit}>
+                    <label htmlFor='username'>
+                        <h2>Username</h2>
+                        <StyledInput name='username' type='text' value={formState.username} onChange={inputChange} />
+                    </label>
+                    {errorState.username ? <span className='error'>{errorState.username}</span> : null}
+                    <label htmlFor='password'>
+                        <h2>Password</h2>
+                        <StyledInput name='password' type='password' value={formState.password} onChange={inputChange} />
+                    </label>
+                    {errorState.password ? <span className="error">{errorState.password}</span> : null}
+                    <label htmlFor='email'>
+                        <h2>Email</h2>
+                        <StyledInput name='email' type='email' value={formState.email} onChange={inputChange} />
+                    </label>
+                    {errorState.email ? <span className="error">{errorState.email}</span> : null}
+                    <button disabled={buttonDisabled}>Submit</button>
+                </form>
+            </span>
         </StyledDiv>
     )
 }
 
 export default CreateUser
 
+//color palette
+// #333D45
+// #4D6E7F
+// #7E8D9C
+// #D5C9BB
+// #C5742C
+// #813D18
+
 const StyledDiv = styled.div`
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-image: url(${img});
+    background-size: cover;
+    padding: 50px;
+    height: 100vh;
+}
+
+.form-container {
+    border-radius: 10px;
+    padding: 5%;
+    padding-top: 3%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+label {
+    display: flex;
+    flex-flow: column;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+h1 {
+    margin: 10px 0px 20px 0px;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
 .error {
     color: red;
 }
+
 button {
     border: 2px solid white;
-    border-radius: 50px;
-    width: 20vw;
-    margin-top: 25px;
-    padding: 1%;
+    border-radius: 5px;
+    width: 150px;
+    margin-top: 30px;
+    padding: 7px 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
+
 button:hover {
   color: white;
   background-image: none;
-  background-color: #4267B2;
+  background-color: #4D6E7F;
   border: 2px solid white;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.1);
 }
+
 button:disabled {
   color: #666;
   background-image: none;
@@ -125,10 +178,11 @@ button:disabled {
   text-shadow: none;
 }
 `
+
 const StyledInput = styled.input`
 border: 2px solid white;
-border-radius: 50px;
+border-radius: 5px;
 width: 30vw;
 margin: 1.2% auto;
-padding: 1.4%;
+padding: 1.4% 0 1.4% 0;
 `
