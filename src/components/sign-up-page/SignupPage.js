@@ -49,10 +49,10 @@ const CreateUser = props => {
             .post("https://ttwebft72recipecookbook.herokuapp.com/api/users", formState)
             .then(res => {
                 console.log(res)
-                localStorage.setItem("token", res.data.access_token)
-                history.push('/profile')
+                localStorage.setItem("token", res.data.token)
+                history.push('/profilepage')
             })
-            .catch(err => console.log(err.message))
+            .catch(err => console.log(err.response))
         setFormState(initialData)
     }
 
