@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 import styled from 'styled-components'
-import axiosWithAuth from '../../utils/axiosWithAuth'
+import axios from 'axios'
 import img from './wood-bg.jpg'
 
 const formSchema = yup.object().shape({
-    username: yup.string().required("Username is required"),
+    username: yup.string().required("Username is required").min(3, "Minimum length of 3 characters"),
     password: yup.string().required("Password is required"),
-    email: yup.string().required("Email is required")
+    email: yup.string().required("Email is required"),
+    name: yup.string(),
+    avatar: yup.string()
 })
 
 const CreateUser = props => {
+    const history = useHistory()
     const userId = parseInt(localStorage.getItem("user"))
 
     const initialData = {
         user_id: userId,
         username: "",
         password: "",
-        email: ""
+        name: "blank",
+        email: "",
+        avatar: "http://test.com/test"
     }
 
     const [formState, setFormState] = useState(initialData);
@@ -25,7 +31,9 @@ const CreateUser = props => {
     const [errorState, setErrorState] = useState({
         username: "",
         password: "",
-        email: ""
+        name: "",
+        email: "",
+        avatar: ""
     })
 
     useEffect(() => {
@@ -37,11 +45,12 @@ const CreateUser = props => {
 
     const formSubmit = e => {
         e.preventDefault();
-        console.log("Submit clicked")
-        axiosWithAuth()
-            .post("/auth/register", formState)
+        axios
+            .post("https://ttwebft72recipecookbook.herokuapp.com/api/users", formState)
             .then(res => {
                 console.log(res)
+                localStorage.setItem("token", res.data.access_token)
+                history.push('/profile')
             })
             .catch(err => console.log(err.message))
         setFormState(initialData)
@@ -74,7 +83,9 @@ const CreateUser = props => {
     return (
         <StyledDiv className='signup-container'>
             <span className='form-container'>
-                <h1 className='signup-title'>Register a new user</h1>
+                <header>
+                    <h1 className='signup-title'>Register a new user</h1>
+                </header>
                 <form onSubmit={formSubmit}>
                     <label htmlFor='username'>
                         <h2>Username</h2>
@@ -118,16 +129,25 @@ const StyledDiv = styled.div`
     height: 100vh;
 }
 
+header {
+    background-color: #813D18;
+    width: 100%;
+    padding: 5% 10%;
+    display: flex;
+    justify-content: center;
+}
+
 .form-container {
     border-radius: 10px;
-    padding: 5%;
-    padding-top: 3%;
+    padding: 3% 3.2%;
+    padding-top: 0%;
     display: flex;
     flex-flow: column;
     align-items: center;
 }
 
 form {
+    margin-top: 50px;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -136,20 +156,21 @@ form {
 label {
     display: flex;
     flex-flow: column;
-    color: black;
+    color: #333D45;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
 h1 {
+    color: #D5C9BB;
+    background-color: #813D18;
     margin: 10px 0px 20px 0px;
     font-size: 2rem;
     font-weight: bold;
-    padding-bottom: 10px;
 }
 
 .error {
-    color: red;
+    color: white;
 }
 
 button {
@@ -184,5 +205,5 @@ border: 2px solid white;
 border-radius: 5px;
 width: 30vw;
 margin: 1.2% auto;
-padding: 1.4% 0 1.4% 0;
+padding: 1.4% 0 1.4% 1.2%;
 `
