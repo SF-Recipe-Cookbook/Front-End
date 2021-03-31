@@ -33,7 +33,7 @@ const Profile = (props) => {
     const {push} = useHistory()
 
     useEffect(() => {
-        axiosWithAuth().get('/auth/')
+        axiosWithAuth().get('/auth')
             .then(res => {
                 setUser(res)
             })
