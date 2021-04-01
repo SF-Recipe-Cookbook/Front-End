@@ -148,7 +148,7 @@ const NewRecipe = () => {
         })
     })
 
-    const {push} = useHistory()
+    const {push} = useHistory()  
 
     
 
