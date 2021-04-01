@@ -114,6 +114,11 @@ const AddRecipe = styled.button`
   font-weight: bold;
 `;
 
+const Options = styled.div`
+    display: flex;
+    justify-content: space-around;
+`
+
 const recipe = {
   name: '',
   category: '',
@@ -181,6 +186,10 @@ const NewRecipe = (...props) => {
         console.log(err.response);
       });
   };
+
+  const returnToProfile = () => {
+      push('/profilepage')
+  }
 
   return (
     <Page>
@@ -272,7 +281,13 @@ const NewRecipe = (...props) => {
           </RightCont>
         </BottomCont>
 
-        <AddRecipe>Add recipe</AddRecipe>
+        <Options>
+                
+            <AddRecipe >Update Recipe</AddRecipe>
+            
+            <AddRecipe onClick={returnToProfile}>Cancel</AddRecipe>
+
+        </Options>
       </NewRecipeCard>
     </Page>
   );

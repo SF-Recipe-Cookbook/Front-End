@@ -35,7 +35,7 @@ function App() {
         </Route>
 
 
-        <Route path='/edit-recipe'>
+        <Route path='/edit-recipe/:id'>
           <EditRecipe/>
         </Route>
 
