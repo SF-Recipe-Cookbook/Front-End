@@ -137,9 +137,22 @@ const recipeErrors = {
   image_url: '',
 };
 
-const NewRecipe = () => {
+// const testRecipe = {
+//   name: 'test45',
+//   category: 'Dinner',
+//   description: 'testing',
+//   ingredients: ['test', 'test', 'test'],
+//   instructions: ['test', 'test', 'test'],
+//   prep_time: 10,
+//   cook_time: 10,
+//   image_url: 'test.com/test',
+// };
+
+const NewRecipe = (...props) => {
   const [newRecipe, setNewRecipe] = useState(recipe);
   const [errors, setErrors] = useState(recipeErrors);
+
+  console.log('props', props);
 
   const { push } = useHistory();
 
@@ -162,12 +175,6 @@ const NewRecipe = () => {
     axiosWithAuth()
       .post('/recipes', newRecipe)
       .then((res) => {
-        console.log(res.data);
-        console.log('res', res);
-        console.log('User', res.data);
-        console.log('Profile Id', res.data._id);
-        console.log('Profile Name', res.data.username);
-        console.log('Profile Email', res.data.email);
         push('/profilepage');
       })
       .catch((err) => {

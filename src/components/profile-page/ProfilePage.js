@@ -16,40 +16,40 @@ const Profile = (props) => {
   };
 
   const initialRecipes = {
-    recipes: [
-      {
-        title: ``,
-        category: '',
-        timeToMake: '',
-        description: '',
-        ingredients: '',
-        instructions: '',
-      },
-    ],
+    title: ``,
+    category: '',
+    timeToMake: '',
+    description: '',
+    ingredients: '',
+    instructions: '',
   };
 
-  console.log('Props', props);
+  // console.log('Props', props);
 
   const [user, setUser] = useState(initialState);
   const [recipes, setRecipes] = useState(initialRecipes);
+  // console.log('res', recipes);
+
+  const newRecipes = [Object.entries(recipes)];
+  console.log('newRecipes', newRecipes);
   const [search, setSearch] = useState('');
 
   const { push } = useHistory();
 
-  let token = localStorage.getItem('token');
-  console.log('new token', token);
+  // let token = localStorage.getItem('token');
+  // console.log('new token', token);
 
-  console.log('Info', localStorage);
+  // console.log('Info', localStorage);
 
   useEffect(() => {
     axiosWithAuth()
       .get('/auth')
       .then((res) => {
-        console.log('res', res);
-        console.log('User', res.data);
-        console.log('Profile Id', res.data._id);
-        console.log('Profile Name', res.data.username);
-        console.log('Profile Email', res.data.email);
+        // console.log('res', res);
+        // console.log('User', res.data);
+        // console.log('Profile Id', res.data._id);
+        // console.log('Profile Name', res.data.username);
+        // console.log('Profile Email', res.data.email);
         setUser(res.data);
       })
       .catch((err) => {
@@ -58,7 +58,7 @@ const Profile = (props) => {
     axiosWithAuth()
       .get('/recipes/user')
       .then((res) => {
-        console.log('User', res.data);
+        console.log('Recipe', res.data);
         setRecipes(res.data);
       })
       .catch((err) => {
@@ -107,16 +107,23 @@ const Profile = (props) => {
       </RecipeSearch>
       <AddRecipeButton onClick={handleAdd}>Add a Recipe</AddRecipeButton>
       <RecipeCards>
-        {recipes.map((recipe) => {
-          return (
-            <Recipe
-              recipe={recipe}
-              search={search}
-              setRecipes={setRecipes}
-              push={push}
-            />
-          );
-        })}
+
+        {newRecipes.map((recipe) =>
+          recipe.map((val) =>
+            val.map((recipe) => {
+              console.log('Object', recipe);
+              return (
+                <Recipe
+                  recipe={recipe}
+                  search={search}
+                  setRecipes={setRecipes}
+                  push={push}
+                />
+              );
+            })
+          )
+        )}
+
       </RecipeCards>
       <Footer>
         <FooterButton
