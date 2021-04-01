@@ -9,7 +9,7 @@ import {useHistory} from 'react-router-dom';
 
 // React Component below this line
 
-const Profile = (props) => {
+const Profile = () => {
     const initialState = {
         username: '',
         password: '',
