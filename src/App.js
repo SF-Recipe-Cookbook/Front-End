@@ -1,4 +1,5 @@
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom';
+
 
 import HomePage from './components/home-page/HomePage'
 import LoginPage from './components/log-in-page/LoginPage'
@@ -11,7 +12,6 @@ function App() {
   return (
     <div>
       <Switch>
-
         <Route exact path='/'>
           <HomePage />
         </Route>
@@ -32,13 +32,15 @@ function App() {
           <NewRecipe />
         </Route>
 
+
         <Route path='/edit-recipe'>
           <EditRecipe/>
         </Route>
 
+
       </Switch>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
