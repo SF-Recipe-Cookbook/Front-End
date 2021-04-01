@@ -8,24 +8,7 @@ const Recipe = ({ recipe, search, setRecipes, push }) => {
   if (search === '' || search === recipe.title) {
     const id = recipe.id;
 
-    const handleDelete = () => {
-      axiosWithAuth()
-        .delete(`/recipes/${id}`)
-        .then((res) => {
-          axiosWithAuth()
-            .get('/recipes/user')
-            .then((res) => {
-              console.log('recipe', res);
-              setRecipes(res);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+    
 
 
 const handleEdit = () => {
@@ -55,7 +38,7 @@ const handleEdit = () => {
         <RecipeInstructions>
           <p>{`Instructions: ${recipe.instructions}`}</p>
         </RecipeInstructions>
-        <DeleteRecipe onClick={handleDelete}>Delete Recipe</DeleteRecipe>
+       
         <EditRecipe onClick={handleEdit}>Edit Recipe</EditRecipe>
       </RecipeComponent>
     );
@@ -68,6 +51,7 @@ export default Recipe;
 
 const RecipeComponent = styled.div`
   width: 20%;
+  margin: 20px;
   border: 2px solid #813d18;
   box-shadow: 3px 3px #4d6e7f;
   display: flex;
