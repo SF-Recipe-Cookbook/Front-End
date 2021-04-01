@@ -137,29 +137,37 @@ const NewRecipe = () => {
 
   const { id } = useParams();
   console.log(`id, ${id}`);
-  console.log(
-    `https://ttwebft72recipecookbook.herokuapp.com/api/recipes/update/${id}`
-  );
+  // console.log(
+  //   `https://ttwebft72recipecookbook.herokuapp.com/api/recipes/update/${id}`
+  // );
 
   useEffect(() => {
     axiosWithAuth()
       .get(`/recipes/update/${id}`)
       .then((res) => {
-        console.log('res', res);
+        // console.log('res', res);
+        setEditRecipe(res.data)
+        console.log(editRecipe)
       })
       .catch((err) => {
         console.log('err', err.response);
       });
-  });
+  },[]);
 
   const { push } = useHistory();
 
   const handleChange = (e) => {
-    setEditRecipe({
-      ...recipe,
-      [e.target.name]: e.target.value.split(','),
-    });
-    console.log(editRecipe);
+    if (e.target.name === "ingredients" || e.target.name === "instructions") {
+      setEditRecipe({
+          ...editRecipe,
+          [e.target.name]: e.target.value.split(','),
+        });
+  } else {
+  setEditRecipe({
+    ...editRecipe,
+    [e.target.name]: e.target.value,
+  });}
+  console.log(editRecipe);
   };
 
   const updateRecipe = (e) => {
@@ -171,7 +179,7 @@ const NewRecipe = () => {
         push('/profilepage');
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 
@@ -202,9 +210,14 @@ const NewRecipe = () => {
             type='text'
             placeholder='Recipe name'
             onChange={handleChange}
+            value={editRecipe.name}
           />
 
-          <Category name='category' onChange={handleChange}>
+          <Category 
+            name='category'
+            onChange={handleChange} 
+            value={editRecipe.category}
+          >
             <option value=''>Select a category</option>
 
             <option value='breakfast'>Breakfast</option>
@@ -225,6 +238,7 @@ const NewRecipe = () => {
             type='text'
             placeholder='recipe image url'
             onChange={handleChange}
+            value={editRecipe.image_url}
           />
         </FirstRow>
 
@@ -235,6 +249,7 @@ const NewRecipe = () => {
           cols='40'
           rows='8'
           onChange={handleChange}
+          value={editRecipe.description}
         />
 
         <BottomCont>
@@ -243,6 +258,7 @@ const NewRecipe = () => {
             type='text'
             placeholder='ingredients (add multiple ingredients with a comma)'
             onChange={handleChange}
+            value={editRecipe.ingredients}
           />
 
           <RightCont>
@@ -253,6 +269,7 @@ const NewRecipe = () => {
               cols='40'
               rows='5'
               onChange={handleChange}
+              value={editRecipe.instructions}
             />
 
             <TimerCont>
@@ -264,7 +281,7 @@ const NewRecipe = () => {
                   placeholder='0'
                   min='0'
                   onChange={handleChange}
-
+                  value={editRecipe.prep_time}
                 />
               </EachTimer>
 
@@ -276,6 +293,7 @@ const NewRecipe = () => {
                   placeholder='0'
                   min='0'
                   onChange={handleChange}
+                  value={editRecipe.cook_time}
                 />
               </EachTimer>
             </TimerCont>
