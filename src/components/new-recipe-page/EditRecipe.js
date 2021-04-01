@@ -121,16 +121,7 @@ const UpdateDelete = styled.div`
   justify-content: space-around;
 `;
 
-const recipe = {
-  name: '',
-  category: '',
-  description: '',
-  ingredients: [],
-  instructions: [],
-  prep_time: '',
-  cook_time: '',
-  image_url: '',
-};
+
 
 const NewRecipe = () => {
   const [editRecipe, setEditRecipe] = useState({});
@@ -152,7 +143,7 @@ const NewRecipe = () => {
       .catch((err) => {
         console.log('err', err.response);
       });
-  },[]);
+  },[editRecipe, id]); //if deployment fails, check here
 
   const { push } = useHistory();
 

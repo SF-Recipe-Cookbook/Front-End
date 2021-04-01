@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import axiosWithAuth from '../../utils/axiosWithAuth';
+
 
 // React Component below this line
 
-const Recipe = ({ recipe, search, setRecipes, push }) => {
+const Recipe = ({ recipe, search, push }) => {
   if (search === '' || search === recipe.title) {
-    const id = recipe.id;
-
+    
     
 
 
@@ -90,6 +89,6 @@ const RecipeInstructions = styled.div`
   margin-bottom: 20px;
 `;
 
-const DeleteRecipe = styled.button``;
+
 
 const EditRecipe = styled.button``;

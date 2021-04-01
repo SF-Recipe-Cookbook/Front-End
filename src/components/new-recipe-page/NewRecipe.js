@@ -131,16 +131,7 @@ const recipe = {
 };
 
 
-const recipeErrors = {
-  name: '',
-  category: '',
-  description: '',
-  ingredients: [],
-  instructions: [],
-  prep_time: '',
-  cook_time: '',
-  image_url: '',
-};
+
 
 // const testRecipe = {
 //   name: 'test45',
@@ -155,7 +146,7 @@ const recipeErrors = {
 
 const NewRecipe = (...props) => {
   const [newRecipe, setNewRecipe] = useState(recipe);
-  const [errors, setErrors] = useState(recipeErrors);
+  
 
   console.log('props', props);
 
