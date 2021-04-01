@@ -46,7 +46,7 @@ const handleEdit = () => {
         </RecipeHeader>
         <RecipeDescription>
           <p>{`Style: ${recipe.category}`}</p>
-          <p>{`Time Required to Make: ${recipe.timeToMake}`}</p>
+          <p>{`Time Required to Make: ${recipe.cook_time} minutes`}</p>
           <p>{`Description: ${recipe.description}`}</p>
         </RecipeDescription>
         <RecipeIngredients>
