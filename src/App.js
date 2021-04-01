@@ -5,6 +5,7 @@ import LoginPage from './components/log-in-page/LoginPage'
 import SignupPage from './components/sign-up-page/SignupPage'
 import ProfilePage from './components/profile-page/ProfilePage'
 import NewRecipe from './components/new-recipe-page/NewRecipe'
+import EditRecipe from './components/new-recipe-page/EditRecipe'
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
 
         <Route path='/new-recipe'>
           <NewRecipe />
+        </Route>
+
+        <Route path='/edit-recipe'>
+          <EditRecipe/>
         </Route>
 
       </Switch>
