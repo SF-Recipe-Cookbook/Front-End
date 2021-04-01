@@ -106,7 +106,7 @@ const Profile = (props) => {
         />
       </RecipeSearch>
       <AddRecipeButton onClick={handleAdd}>Add a Recipe</AddRecipeButton>
-      {/* <RecipeCards>
+      <RecipeCards>
         {recipes.map((recipe) => {
           return (
             <Recipe
@@ -117,7 +117,7 @@ const Profile = (props) => {
             />
           );
         })}
-      </RecipeCards> */}
+      </RecipeCards>
       <Footer>
         <FooterButton
           onClick={window.scroll({
@@ -132,6 +132,7 @@ const Profile = (props) => {
     </Page>
   );
 };
+
 
 export default Profile;
 

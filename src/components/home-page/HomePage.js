@@ -31,14 +31,13 @@ const Heading = styled.h1 `
     background-color: #813D18;
     text-align: center;
     font-size: 2em;
-    margin-top: 2%
+    margin-top: 2%;
     `
 const Button = styled.button `
     font-size: 1.1em;
     // border: 1px dashed black;
     display: flex;
     background-color: #D5C9BB;
-    border-radius: ;
     color: #333D45;
     text-align: center;
     margin: 1%;
@@ -63,7 +62,6 @@ const Text = styled.h3 `
     position: absolute;
     font-size: 2.7em;
     background: transparent;
-    line-spacing: 1em;
     color: white;
     letter-spacing: 4.4px;
     word-spacing: 3.4px;
@@ -98,9 +96,6 @@ const FooterP=styled.p`
     background-color: #813D18;
 
 `
-
-// onClick={signup}
-// onClick={login}
 
 const HomePage = () => {
     const history = useHistory()

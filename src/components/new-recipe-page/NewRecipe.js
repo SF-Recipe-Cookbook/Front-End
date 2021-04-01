@@ -125,6 +125,7 @@ const recipe = {
   image_url: '',
 };
 
+
 const recipeErrors = {
   name: '',
   category: '',
@@ -240,6 +241,7 @@ const NewRecipe = () => {
                   placeholder='0'
                   min='0'
                   onChange={handleChange}
+
                 />
               </EachTimer>
 
