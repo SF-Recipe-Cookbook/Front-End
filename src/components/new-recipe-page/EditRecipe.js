@@ -130,7 +130,7 @@ const recipe = {
     image_url: ""
 }
 
-const NewRecipe = props => {
+const NewRecipe = () => {
 
     const [newRecipe, setNewRecipe] = useState(recipe)
 
