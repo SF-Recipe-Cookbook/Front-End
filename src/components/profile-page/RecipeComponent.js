@@ -5,7 +5,7 @@ import axiosWithAuth from '../../utils/axiosWithAuth';
 // React Component below this line
 
 const Recipe = ({ recipe, search, setRecipes, push }) => {
-  if (search === '' || search === recipe.title) {
+  if (search === '' || search === recipe.name) {
     const id = recipe.id;
 
     const handleDelete = () => {
@@ -27,12 +27,10 @@ const Recipe = ({ recipe, search, setRecipes, push }) => {
         });
     };
 
-
-const handleEdit = () => {
-    const id = recipe._id
-    push(`/edit-recipe/${id}`)
-}
-
+    const handleEdit = () => {
+      const id = recipe._id;
+      push(`/edit-recipe/${id}`);
+    };
 
     return (
       <RecipeComponent>
