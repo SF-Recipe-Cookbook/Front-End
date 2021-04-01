@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { useHistory, useParams } from 'react-router-dom';
-import axiosWithAuth from '../../utils/axiosWithAuth';
+
+import React, {useState, useEffect} from 'react'
+import styled from 'styled-components'
+import {useHistory, useParams} from 'react-router-dom'
+import axiosWithAuth from '../../utils/axiosWithAuth'
+
 
 const Page = styled.div`
   font-size: 1.5rem;
@@ -262,6 +264,7 @@ const NewRecipe = () => {
                   placeholder='0'
                   min='0'
                   onChange={handleChange}
+
                 />
               </EachTimer>
 
@@ -278,6 +281,7 @@ const NewRecipe = () => {
             </TimerCont>
           </RightCont>
         </BottomCont>
+
 
         <UpdateDelete>
           <AddRecipe onClick={updateRecipe}>Update Recipe</AddRecipe>
