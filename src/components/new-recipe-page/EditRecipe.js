@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import {useHistory, useParams} from 'react-router-dom'
 import axiosWithAuth from '../../utils/axiosWithAuth'
@@ -132,25 +132,37 @@ const recipe = {
 
 const NewRecipe = () => {
 
-    const [newRecipe, setNewRecipe] = useState(recipe)
+    const [editRecipe, setEditRecipe] = useState({})
 
-    // const {recipe} = props
+    const {id} = useParams()
+    console.log(`id, ${id}`)
+    console.log(`https://ttwebft72recipecookbook.herokuapp.com/api/recipes/${id}`)
+
+    useEffect(() => {
+        axiosWithAuth().get(`/recipes/${id}`)
+        .then(res => {
+            console.log("res", res)
+        })
+        .catch(err=> {
+            console.log("err", err.response)
+        })
+    })
 
     const {push} = useHistory()
 
-    const id = useParams()
+    
 
     const handleChange = e => {
-        setNewRecipe({
+        setEditRecipe({
             ...recipe,
             [e.target.name]: e.target.value.split(",")
         })
-        console.log(newRecipe)
+        console.log(editRecipe)
     }
 
     const updateRecipe = e => {
         e.preventDefault()
-        axiosWithAuth().put(`/recipes/${id}`, recipe)
+        axiosWithAuth().put(`/recipes/${id}`, editRecipe)
         .then(res => {
             console.log(res.data)
             push('/profilepage')
@@ -170,6 +182,10 @@ const NewRecipe = () => {
         .catch(err => {
             console.log(err)
         })
+    }
+
+    const returnToProfile = () => {
+        push('/profilepage')
     }
 
     return (
@@ -297,6 +313,8 @@ const NewRecipe = () => {
                     <AddRecipe onClick={updateRecipe}>Update Recipe</AddRecipe>
                     
                     <AddRecipe onClick={deleteRecipe}>Delete Recipe</AddRecipe>
+                    
+                    <AddRecipe onClick={returnToProfile}>Cancel</AddRecipe>
 
                 </UpdateDelete>
 

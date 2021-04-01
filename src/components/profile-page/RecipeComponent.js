@@ -29,7 +29,8 @@ const Recipe = ({ recipe, search, setRecipes, push }) => {
 
 
 const handleEdit = () => {
-    push('/edit-recipe')
+    const id = recipe._id
+    push(`/edit-recipe/${id}`)
 }
 
 
