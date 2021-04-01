@@ -125,6 +125,7 @@ const recipe = {
   image_url: '',
 };
 
+
 const recipeErrors = {
   name: '',
   category: '',
@@ -156,10 +157,16 @@ const NewRecipe = (...props) => {
   const { push } = useHistory();
 
   const handleChange = (e) => {
+    if (e.target.name === "ingredients" || e.target.name === "instructions") {
+        setNewRecipe({
+            ...newRecipe,
+            [e.target.name]: e.target.value.split(','),
+          });
+    } else {
     setNewRecipe({
       ...newRecipe,
-      [e.target.name]: e.target.value.split(','),
-    });
+      [e.target.name]: e.target.value,
+    });}
     console.log(newRecipe);
   };
 
@@ -171,7 +178,7 @@ const NewRecipe = (...props) => {
         push('/profilepage');
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 
@@ -247,6 +254,7 @@ const NewRecipe = (...props) => {
                   placeholder='0'
                   min='0'
                   onChange={handleChange}
+
                 />
               </EachTimer>
 

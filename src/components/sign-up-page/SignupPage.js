@@ -13,7 +13,7 @@ const formSchema = yup.object().shape({
     avatar: yup.string()
 })
 
-const CreateUser = props => {
+const CreateUser = () => {
     const history = useHistory()
     const userId = parseInt(localStorage.getItem("user"))
 
@@ -61,7 +61,7 @@ const CreateUser = props => {
         yup
             .reach(formSchema, t.name)
             .validate(t.value)
-            .then(valid => {
+            .then(() => {
                 setErrorState({ ...errorState, [t.name]: "" })
             })
             .catch(err => {
@@ -127,7 +127,7 @@ const StyledDiv = styled.div`
     background-size: cover;
     padding: 50px;
     height: 100vh;
-}
+
 
 header {
     background-color: #813D18;
@@ -198,6 +198,7 @@ button:disabled {
   border: 2px solid rgba(0, 0, 0, 0.1);
   text-shadow: none;
 }
+
 `
 
 const StyledInput = styled.input`

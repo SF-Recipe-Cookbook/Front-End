@@ -107,6 +107,7 @@ const Profile = (props) => {
       </RecipeSearch>
       <AddRecipeButton onClick={handleAdd}>Add a Recipe</AddRecipeButton>
       <RecipeCards>
+
         {newRecipes.map((recipe) =>
           recipe.map((val) =>
             val.map((recipe) => {
@@ -122,6 +123,7 @@ const Profile = (props) => {
             })
           )
         )}
+
       </RecipeCards>
       <Footer>
         <FooterButton
@@ -137,6 +139,7 @@ const Profile = (props) => {
     </Page>
   );
 };
+
 
 export default Profile;
 
