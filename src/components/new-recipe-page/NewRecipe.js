@@ -125,21 +125,12 @@ const recipe = {
     image_url: ""
 }
 
-const recipeErrors = {
-    name: "",
-    category: "",
-    description: "",
-    ingredients: [],
-    instructions: [],
-    prep_time: "",
-    cook_time: "",
-    image_url: ""
-}
+
 
 const NewRecipe = () => {
 
     const [newRecipe, setNewRecipe] = useState(recipe)
-    const [errors, setErrors] = useState(recipeErrors)
+    
 
     const {push} = useHistory()
 
