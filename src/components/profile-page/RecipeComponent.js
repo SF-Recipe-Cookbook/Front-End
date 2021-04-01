@@ -28,7 +28,7 @@ const handleDelete = () => {
 }
 
 const handleEdit = () => {
-    push('/')
+    push('/edit-recipe')
 }
 
     return (
