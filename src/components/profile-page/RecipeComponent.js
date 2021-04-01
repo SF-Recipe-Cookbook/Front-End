@@ -1,32 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import axiosWithAuth from '../../utils/axiosWithAuth';
 
 // React Component below this line
 
-const Recipe = ({ recipe, search, setRecipes, push }) => {
-  if (search === '' || search === recipe.name) {
-    const id = recipe.id;
-
-    const handleDelete = () => {
-      axiosWithAuth()
-        .delete(`/recipes/${id}`)
-        .then((res) => {
-          axiosWithAuth()
-            .get('/recipes/user')
-            .then((res) => {
-              console.log('recipe', res);
-              setRecipes(res);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-
+const Recipe = ({ recipe, search, push }) => {
+  if (search === '' || search === recipe.title) {
     const handleEdit = () => {
       const id = recipe._id;
       push(`/edit-recipe/${id}`);
@@ -53,7 +31,7 @@ const Recipe = ({ recipe, search, setRecipes, push }) => {
         <RecipeInstructions>
           <p>{`Instructions: ${recipe.instructions}`}</p>
         </RecipeInstructions>
-        <DeleteRecipe onClick={handleDelete}>Delete Recipe</DeleteRecipe>
+
         <EditRecipe onClick={handleEdit}>Edit Recipe</EditRecipe>
       </RecipeComponent>
     );
@@ -66,6 +44,7 @@ export default Recipe;
 
 const RecipeComponent = styled.div`
   width: 20%;
+  margin: 20px;
   border: 2px solid #813d18;
   box-shadow: 3px 3px #4d6e7f;
   display: flex;
@@ -103,7 +82,5 @@ const RecipeInstructions = styled.div`
   height: 20%;
   margin-bottom: 20px;
 `;
-
-const DeleteRecipe = styled.button``;
 
 const EditRecipe = styled.button``;

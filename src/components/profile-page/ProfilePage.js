@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 
 // React Component below this line
 
-const Profile = (props) => {
+const Profile = () => {
   const initialState = {
     username: '',
     password: '',
@@ -193,7 +193,7 @@ const RecipeSearch = styled.form`
 const AddRecipeButton = styled.button``;
 
 const RecipeCards = styled.section`
-  height: 50vh;
+  padding: 20px;
   border: 2px solid black;
   display: flex;
   flex-wrap: wrap;
