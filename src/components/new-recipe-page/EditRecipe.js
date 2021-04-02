@@ -126,6 +126,8 @@ const UpdateDelete = styled.div`
 const NewRecipe = () => {
   const [editRecipe, setEditRecipe] = useState({});
 
+  console.log('edit', editRecipe);
+
   const { id } = useParams();
   console.log(`id, ${id}`);
   // console.log(

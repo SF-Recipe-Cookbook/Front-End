@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 
 // React Component below this line
 
-const Profile = () => {
+const Profile = (props) => {
   const initialState = {
     username: '',
     password: '',
@@ -30,7 +30,7 @@ const Profile = () => {
   const [recipes, setRecipes] = useState(initialRecipes);
   // console.log('res', recipes);
 
-  const newRecipes = [Object.entries(recipes)];
+  const newRecipes = [Object.values(recipes)];
   console.log('newRecipes', newRecipes);
   const [search, setSearch] = useState('');
 
@@ -107,23 +107,19 @@ const Profile = () => {
       </RecipeSearch>
       <AddRecipeButton onClick={handleAdd}>Add a Recipe</AddRecipeButton>
       <RecipeCards>
-
-        {newRecipes.map((recipe) =>
-          recipe.map((val) =>
-            val.map((recipe) => {
-              console.log('Object', recipe);
-              return (
-                <Recipe
-                  recipe={recipe}
-                  search={search}
-                  setRecipes={setRecipes}
-                  push={push}
-                />
-              );
-            })
-          )
+        {newRecipes.map((newrecipe) =>
+          newrecipe.map((recipe) => {
+            console.log('Object', recipe);
+            return (
+              <Recipe
+                recipe={recipe}
+                search={search}
+                setRecipes={setRecipes}
+                push={push}
+              />
+            );
+          })
         )}
-
       </RecipeCards>
       <Footer>
         <FooterButton
@@ -139,7 +135,6 @@ const Profile = () => {
     </Page>
   );
 };
-
 
 export default Profile;
 
@@ -198,7 +193,7 @@ const RecipeSearch = styled.form`
 const AddRecipeButton = styled.button``;
 
 const RecipeCards = styled.section`
-  padding: 20px;
+  height: 50vh;
   border: 2px solid black;
   display: flex;
   flex-wrap: wrap;

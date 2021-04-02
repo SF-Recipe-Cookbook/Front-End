@@ -1,20 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 // React Component below this line
 
 const Recipe = ({ recipe, search, push }) => {
   if (search === '' || search === recipe.title) {
-    
-    
-
-
-const handleEdit = () => {
-    const id = recipe._id
-    push(`/edit-recipe/${id}`)
-}
-
+    const handleEdit = () => {
+      const id = recipe._id;
+      push(`/edit-recipe/${id}`);
+    };
 
     return (
       <RecipeComponent>
@@ -37,7 +31,7 @@ const handleEdit = () => {
         <RecipeInstructions>
           <p>{`Instructions: ${recipe.instructions}`}</p>
         </RecipeInstructions>
-       
+
         <EditRecipe onClick={handleEdit}>Edit Recipe</EditRecipe>
       </RecipeComponent>
     );
@@ -88,7 +82,5 @@ const RecipeInstructions = styled.div`
   height: 20%;
   margin-bottom: 20px;
 `;
-
-
 
 const EditRecipe = styled.button``;
